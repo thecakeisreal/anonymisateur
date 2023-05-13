@@ -1,4 +1,4 @@
-module org.alexandre.anonymisateur {
+module org.alexandre.depersonalize {
     requires javafx.controls;
     requires javafx.fxml;
     requires kotlin.stdlib;
@@ -6,6 +6,6 @@ module org.alexandre.anonymisateur {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
 
-    opens org.alexandre.anonymisateur to javafx.fxml;
-    exports org.alexandre.anonymisateur;
+    opens org.alexandre.depersonalize to javafx.fxml;
+    exports org.alexandre.depersonalize;
 }

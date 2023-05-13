@@ -1,4 +1,4 @@
-package org.alexandre.anonymisateur
+package org.alexandre.depersonalize
 
 import javafx.application.Application
 import javafx.fxml.FXMLLoader
@@ -6,18 +6,21 @@ import javafx.scene.Scene
 import javafx.stage.Stage
 import org.kordamp.bootstrapfx.BootstrapFX
 
-class AnonymRepoApplication : Application() {
+/**
+ * Lance le système en affichant l'interface principale.
+ */
+class DepersonalizeRepoApplication : Application() {
     override fun start(stage: Stage) {
-        val fxmlLoader = FXMLLoader(AnonymRepoApplication::class.java.getResource("anonyme_repo_view.fxml"))
+        val fxmlLoader = FXMLLoader(DepersonalizeRepoController::class.java.getResource("depersonalize_repo_view.fxml"))
         val scene = Scene(fxmlLoader.load(), 800.0, 500.0)
 
         scene.stylesheets.add(BootstrapFX.bootstrapFXStylesheet())
-        stage.title = "Anonymisateur"
+        stage.title = "Système de dépersonnalisation"
         stage.scene = scene
         stage.show()
     }
 }
 
 fun main() {
-    Application.launch(AnonymRepoApplication::class.java)
+    Application.launch(DepersonalizeRepoApplication::class.java)
 }

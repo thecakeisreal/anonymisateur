@@ -21,13 +21,13 @@ ext {
 sourceCompatibility = '17'
 targetCompatibility = '17'
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.encoding = 'UTF-8'
 }
 
 application {
-    mainModule = 'org.alexandre.anonymisateur'
-    mainClass = 'org.alexandre.anonymisateur.AnonymRepoApplication'
+    mainModule = 'org.alexandre.depersonalize'
+    mainClass = 'org.alexandre.depersonalize.DepersonalizeRepoApplication'
 }
 
 [compileKotlin, compileTestKotlin].forEach {
@@ -53,14 +53,8 @@ test {
     useJUnitPlatform()
 }
 
-jlink {
-    imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
-    options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
-    launcher {
-        name = 'app'
-    }
+javadoc {
+    options.memberLevel = JavadocMemberLevel.PRIVATE
 }
 
-jlinkZip {
-    group = 'distribution'
-}
+
