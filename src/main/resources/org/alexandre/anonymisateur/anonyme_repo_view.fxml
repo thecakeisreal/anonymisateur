@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.layout.HBox?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.alexandre.anonymisateur.AnonymRepoController"
+            fx:id="root">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
+
+
+    <top>
+        <VBox>
+            <Label styleClass="h1">Anonymisateur</Label>
+            <GridPane hgap="10" vgap="20">
+                <Label GridPane.rowIndex="0" GridPane.columnIndex="0" styleClass="p">Répertoire à anonymiser</Label>
+                <Button fx:id="pickFileBtn" GridPane.rowIndex="0" GridPane.columnIndex="1" styleClass="btn, btn-info"
+                        onAction="#onPickDirClicked">Choisir un répertoire
+                </Button>
+                <TextField fx:id="chosenDirTextField" GridPane.rowIndex="0" GridPane.columnIndex="2" editable="false"/>
+
+                <Label fx:id="dirToRenameCountLabel" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       GridPane.columnSpan="3"/>
+            </GridPane>
+        </VBox>
+    </top>
+    <center>
+        <VBox>
+            <BorderPane.margin>
+                <Insets>
+                    <top>20</top>
+                </Insets>
+            </BorderPane.margin>
+            <Label styleClass="h4">Prévisualisation</Label>
+            <TableView fx:id="renamingInfoTable" minHeight="150.0" prefHeight="200.0" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="originalNameColumn" text="Nom original"/>
+                    <TableColumn fx:id="renamedNameColumn" text="Renommer en"/>
+                </columns>
+            </TableView>
+            <HBox nodeOrientation="RIGHT_TO_LEFT">
+                <VBox.margin>
+                    <Insets>
+                        <top>20</top>
+                    </Insets>
+                </VBox.margin>
+                <Button styleClass="btn, btn-success, btn-lg" onAction="#renameAllDirectories">Renommer</Button>
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>
