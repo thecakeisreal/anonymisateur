@@ -105,11 +105,14 @@ class DepersonalizeRepoController {
      * Met à jour le table et les informations de renommage à partir des répertoires enfants de [directoryPath].
      */
     private fun updateRenameInfo(directoryPath: String) {
-        renamingInfo.clear()
+        do {
+            renamingInfo.clear()
 
-        File(directoryPath).listFiles { f -> f.isDirectory }?.forEach {
-            renamingInfo.add(Pair(it.name, UUID.randomUUID().toString().substring(0, 6)))
-        }
+            File(directoryPath).listFiles { f -> f.isDirectory }?.forEach {
+                renamingInfo.add(Pair(it.name, UUID.randomUUID().toString().substring(0, 6)))
+            }
+            // Vérifie l'unicité des valeurs
+        } while (renamingInfo.stream().map { p -> p.second }.distinct().count().toInt() != renamingInfo.size)
     }
 
     /**
@@ -128,8 +131,9 @@ class DepersonalizeRepoController {
             renamingInfo.forEach {
                 Paths.get(basePath, it.first).toFile().renameTo(Paths.get(basePath, it.second).toFile())
             }
-        } catch(exception : IOException) {
-            Alert(AlertType.ERROR, "Impossible d'écrire les clés de renommage\n ${exception.message}",
+        } catch (exception: IOException) {
+            Alert(
+                AlertType.ERROR, "Impossible d'écrire les clés de renommage\n ${exception.message}",
                 ButtonType.OK
             )
         }
