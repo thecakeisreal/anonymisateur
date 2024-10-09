@@ -85,7 +85,7 @@ class DepersonalizeRepoController {
         chooserStage.isAlwaysOnTop = true
 
         val directoryChooser = DirectoryChooser()
-        directoryChooser.initialDirectory = File("I:\\Documents\\Google Drive\\Cours - Cégep Victo")
+        //directoryChooser.initialDirectory = File("C:\\Users\\aouellet\\OneDrive - Cégep de Victoriaville\\Documents\\ExamenConception")
         val selectedDirectory = directoryChooser.showDialog(chooserStage)
 
         // Met à jour le champ texte
